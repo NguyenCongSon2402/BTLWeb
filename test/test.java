@@ -16,9 +16,11 @@ import java.util.List;
 public class test {
     public static void main(String[] args) {
         DAO dao=new DAO();
+    int count=dao.countProductCateID(1);
 int id=1;
-                List<Product> list= dao.getAllProduct();
+                List<Product> list= dao.pagingProductCateID(id,2);
 for(Product o:list)
-        System.out.println(o);
+System.out.println(o);
+        System.out.println(count);
     }
 }

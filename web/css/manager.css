@@ -123,7 +123,7 @@ table.table .avatar {
     background: #0397d6;
 }
 .pagination li.disabled i {
-    color: #ccc;
+    color: #666;
 }
 .pagination li i {
     font-size: 16px;

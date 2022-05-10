@@ -57,6 +57,19 @@
     <body>
         <div class="header">
         <jsp:include page="Menu.jsp"></jsp:include>
+        <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3.5">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="HomeControl">All Product</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Category</a></li>
+                                    <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
             <div class="container">
                 <div class="row">
                     
@@ -141,5 +154,10 @@
         </div>
           <jsp:include page="Footer.jsp"></jsp:include>
            </div>
+           <script src="https://uhchat.net/code.php?f=56ac67"></script>
+            <div class="zalo-chat-widget" data-oaid="589634003921980460" 
+                 data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="300" data-height="350"></div>
+
+<script src="https://sp.zalo.me/plugins/sdk.js"></script>
     </body>
 </html>

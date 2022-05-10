@@ -5,10 +5,8 @@
 package controller;
 
 import dao.DAO;
-import entity.Category;
 import entity.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-public class HomeControl extends HttpServlet {
+public class ListPControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +30,7 @@ public class HomeControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         response.setContentType("text/html;charset=UTF-8");
-        //b1: get data from dao
         String indexPage=request.getParameter("index");
         if(indexPage== null){
         indexPage="1";
@@ -47,15 +43,11 @@ public class HomeControl extends HttpServlet {
         endPage++;
         }
         List<Product> list= dao.pagingProduct(index);
-        List<Category> listC = dao.getAllCategory();
-        Product last = dao.getLast();// lay san pham moi nhat
         request.setAttribute("listP",list);
         request.setAttribute("endPage",endPage);
         request.setAttribute("index",index);
-        request.setAttribute("listCC", listC);
-        request.setAttribute("p", last);
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
-        
+        request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

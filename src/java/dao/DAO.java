@@ -15,10 +15,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author trinh
- */
+
 public class DAO {
 
     Connection conn = null;
@@ -272,6 +269,75 @@ public class DAO {
         } catch (Exception e) {
         }
     }
+    public int countProduct() {
+            String query = "SELECT COUNT(*) FROM product";
+            try {
+                conn = new DBContext().getConnection();//mo ket noi voi sql
+                ps = conn.prepareStatement(query);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (Exception e) {
+            }
+            return 0;
+        }
+    public int countProductCateID(int cateID) {
+            String query = "SELECT COUNT(*) FROM product Where cateID = ?";
+            try {
+                conn = new DBContext().getConnection();//mo ket noi voi sql
+                ps = conn.prepareStatement(query);
+            ps.setInt(1, cateID);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            } catch (Exception e) {
+            }
+            return 0;
+        }
+    public List<Product> pagingProductCateID(int IDcate,int index) {
+            List<Product> list = new ArrayList<>();
+            String query = "SELECT * FROM product Where cateID = ? ORDER BY id OFFSET ? ROWS FETCH NEXT 3  ROWS ONLY";
+            try {
+                conn = new DBContext().getConnection();//mo ket noi voi sql
+                ps = conn.prepareStatement(query);
+                ps.setInt(1, IDcate);
+                ps.setInt(2, (index - 1) * 3);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(new Product(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getDouble(4),
+                            rs.getString(5),
+                            rs.getString(6),rs.getInt(9)));
+                }
+            } catch (Exception e) {
+            }
+            return list;
+        }
+
+    public List<Product> pagingProduct(int index) {
+            List<Product> list = new ArrayList<>();
+            String query = "SELECT * FROM product ORDER BY id OFFSET ? ROWS FETCH NEXT 3  ROWS ONLY";
+            try {
+                conn = new DBContext().getConnection();//mo ket noi voi sql
+                ps = conn.prepareStatement(query);
+                ps.setInt(1, (index - 1) * 3);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(new Product(rs.getInt(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getDouble(4),
+                            rs.getString(5),
+                            rs.getString(6),rs.getInt(9)));
+                }
+            } catch (Exception e) {
+            }
+            return list;
+        }
     public static void main(String[] args) {
         DAO dao = new DAO();
         List<Product> list = dao.getAllProduct();

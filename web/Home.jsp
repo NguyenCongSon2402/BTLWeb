@@ -26,6 +26,7 @@
         </style>
     </head>
     <body >
+        
         <div class="header">
             <jsp:include page="Menu.jsp"></jsp:include>
            
@@ -34,7 +35,7 @@
                         <div class="col-sm-3.5">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="HomeControl">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="HomeControl">All Product</a></li>
                                     <li class="breadcrumb-item"><a href="#">Category</a></li>
                                     <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
                                 </ol>
@@ -77,6 +78,21 @@
 
                     </div>
                 </div>
+                         
+                         <div class="clearfix">
+                             <div class="hint-text">Showing <b>4</b> out of <b>25</b> entries</div>
+                        <ul class="pagination">
+                             <c:if test="${index >1}">
+                                <li class="page-item disabled"><a href="HomeControl?index=${index-1}">Previous</a></li>
+                            </c:if>
+                                <c:forEach begin="1" end="${endPage}" var="i">
+                                    <li class="page-item ${index == i? "active":""}"><a href="HomeControl?index=${i}" class="page-link">${i}</a></li>
+                                </c:forEach>
+                            <c:if test="${index < endPage}">
+                                <li class="page-item"><a href="HomeControl?index=${index+1}" class="page-link">Next</a></li>
+                            </c:if>
+                        </ul>
+                    </div>
 
                 <jsp:include page="Footer.jsp"></jsp:include>
             </div>

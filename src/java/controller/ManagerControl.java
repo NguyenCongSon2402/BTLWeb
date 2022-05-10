@@ -34,13 +34,22 @@ public class ManagerControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session= request.getSession();
-        Account acc=(Account)  session.getAttribute("account");
-        int id=acc.getId();
-        DAO dao= new DAO();
-        List<Product> list= dao.getProductBySellID(id);
+        String indexPage=request.getParameter("index");
+        if(indexPage== null){
+        indexPage="1";
+        }
+        int index=Integer.parseInt(indexPage);
+        DAO dao=new DAO();
+        int count=dao.countProduct();
+        int endPage=count/3;
+        if(count%3!=0){
+        endPage++;
+        }
+        List<Product> list= dao.pagingProduct(index);
         List<Category> listC = dao.getAllCategory();
         request.setAttribute("listP",list);
+        request.setAttribute("endPage",endPage);
+        request.setAttribute("index",index);
         request.setAttribute("listCC", listC);
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
     }

@@ -10,18 +10,13 @@
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="HomeControl">All Product</a>
+                <a class="navbar-brand" href="HomeControl"><img src="video/images.jpg" width="100px" height="50px"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
                     <ul class="navbar-nav m-auto">
-                        <c:if test="${sessionScope.account.isAdmin == 1}">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Manager Account</a>
-                            </li>
-                        </c:if>   
                         <c:if test="${sessionScope.account.isSell == 1}">
                             <li class="nav-item">
                                 <a class="nav-link" href="ManagerControl">Manager Product</a>
@@ -32,7 +27,7 @@
                                 <a class="nav-link" href="LogoutControl">Logout</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Hello ${sessionScope.account.id}</a>
+                                <a class="nav-link" href="#">Hello ${sessionScope.account.user}</a>
                             </li>
                         </c:if>
                         <c:if test="${sessionScope.account == null}">
@@ -61,11 +56,9 @@
                 </div>
             </div>
         </nav>
-        <section class="jumbotron text-center">
-            <div class="container-fluid">
-                <h1 class="jumbotron-heading">Siêu thị giày chất lượng cao</h1>
-                <p class="lead text-muted mb-0">Uy tín tạo nên thương hiệu với hơn 10 năm cung cấp các sản phầm giày nhập từ Trung Quốc</p>
-            </div>
-        </section>
+        <section class="text-center" style="background-color: white;">
+                <div class="container-fluid" style="background-image: url('video/banner-n04.jpg'); height: 400px;background-size: cover">
+                </div>
+            </section>
                             
         <!--end of menu-->

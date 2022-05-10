@@ -52,6 +52,10 @@
         <servlet-name>EditControl</servlet-name>
         <servlet-class>controller.EditControl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListPControl</servlet-name>
+        <servlet-class>controller.ListPControl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeControl</servlet-name>
         <url-pattern>/HomeControl</url-pattern>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>EditControl</servlet-name>
         <url-pattern>/EditControl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListPControl</servlet-name>
+        <url-pattern>/ListPControl</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

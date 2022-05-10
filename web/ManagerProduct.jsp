@@ -76,20 +76,22 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                    </ul>
-                </div>
+                        <div class="hint-text">Showing <b>4</b> out of <b>25</b> entries</div>
+                        <ul class="pagination">
+                             <c:if test="${index >1}">
+                            <li class="page-item disabled"><a href="ManagerControl?index=${index-1}">Previous</a></li>
+                            </c:if>
+                                <c:forEach begin="1" end="${endPage}" var="i">
+                                 <li class="page-item ${index == i? "active":""}"><a href="ManagerControl?index=${i}" class="page-link">${i}</a></li>
+                                </c:forEach>
+                            <c:if test="${index < endPage}">
+                            <li class="page-item"><a href="ManagerControl?index=${index+1}" class="page-link">Next</a></li>
+                            </c:if>
+                        </ul>
+                    </div>
             </div>
         </div>
-        <!-- add Modal HTML -->
+        <!-- add -->
         <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
