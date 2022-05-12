@@ -53,9 +53,9 @@ public class AddManyToCart extends HttpServlet {
         
         PrintWriter out = response.getWriter();
         if (notOutOfStock) {
-            out.println("Đã thêm sản phẩm vào giỏ hàng của bạn");
+            out.println("Product is added to cart");
         } else {
-            out.println("Xin lỗi, sản phẩm này hiện đang hết hàng");
+            out.println("Sorry, Product is out of stock");
         }
     }
 

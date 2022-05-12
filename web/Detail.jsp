@@ -10,17 +10,6 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
          <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <style>
-            html,body{
-                margin: 0;
-            }
-            
-            .header {
-                width: 100%;
-                height: 100%;
-                background-image:url(https://media.gettyimages.com/photos/seamless-rice-paper-background-picture-id184882351?s=612x612);
-                background-size: 100% auto;
-                background-repeat:repeat;
-            }
             .gallery-wrap .img-big-wrap img {
                 height: 450px;
                 width: auto;
@@ -55,21 +44,7 @@
         </style>
     </head>
     <body>
-        <div class="header">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3.5">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="HomeControl">All Product</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Category</a></li>
-                                    <li class="breadcrumb-item active" aria-current="#">Sub-category</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
             <div class="container">
                 <div class="row">
                     
@@ -92,7 +67,7 @@
                                         </div> <!-- slider-nav.// -->
                                         <div class="col">
                                                         <c:if test="${detail.amount!=0}">
-                                                        <span class="badge badge-pill badge-info">Amount ${detail.amount}</span>
+                                                        <span class="badge badge-pill badge-info">Amount ${o.amount}</span>
                                                     </c:if>
                                                         <c:if test="${detail.amount==0}">
                                                         <span class="badge badge-danger">Hết hàng</span>
@@ -101,12 +76,13 @@
                                     </article> <!-- gallery-wrap .end// -->
                                 </aside>
                                 <aside class="col-sm-7">
+                                    <h3 style="color: red">${message}</h3>
                                     <article class="card-body p-5">
                                         <h3 class="title mb-3">${detail.name}</h3>
 
                                         <p class="price-detail-wrap"> 
                                             <span class="price h3 text-warning"> 
-                                                <span class="currency">US $</span><span class="num">${detail.price}</span>
+                                                <span class="num">${detail.price} </span><span class="currency">VND</span>
                                             </span> 
                                             <!--<span>/per kg</span>--> 
                                         </p> <!-- price-detail-wrap .// -->
@@ -114,38 +90,33 @@
                                             <dt>Description</dt>
                                             <dd><p>${detail.description} </p></dd>
                                         </dl>
-<!--                                        <dl class="param param-feature">
-                                            <dt>Model#</dt>
-                                            <dd>12345611</dd>
-                                        </dl>   item-property-hor .// 
-                                        <dl class="param param-feature">
-                                            <dt>Color</dt>
-                                            <dd>Black and white</dd>
-                                        </dl>   item-property-hor .// 
-                                        <dl class="param param-feature">
-                                            <dt>Delivery</dt>
-                                            <dd>Russia, USA, and Europe</dd>
-                                        </dl>   item-property-hor .// -->
-
+                                        
                                         <hr>
                                         <div class="row">
                                             <div class="col-sm-5">
                                                 <dl class="param param-inline">
                                                     <dt>Quantity: </dt>
                                                     <dd>
-                                                        <select id="select_id" class="form-control form-control-sm" style="width:70px;">
+                                                        <select class="form-control form-control-sm" style="width:70px;" id="select_id">
                                                             <c:forEach var="i" begin="1" end="${detail.amount}">
                                                                 <option> ${i} </option>
                                                             </c:forEach>
                                                         </select>
                                                     </dd>
-                                                </dl>  <!-- item-property .// -->
+                                                </dl>  <!-- item-property .// 
                                             </div> <!-- col.// -->
                                             
                                         </div> <!-- row.// -->
                                         <hr>
-                                        <button onclick="buy(${detail.id})" class="btn btn-lg btn-info text-uppercase"> Buy now </button>
-                                        <button onclick="addCart2(${detail.id})" class="btn btn-lg btn-outline-info text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </button>
+                                        <c:if test="${detail.amount!=0}">
+                                             <button onclick="buy(${detail.id})" class="btn btn-lg btn-info text-uppercase"> Buy now </button>
+                                             <button onclick="addCart2(${detail.id})" class="btn btn-lg btn-outline-info text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </button>
+                                        </c:if>
+                                        <c:if test="${detail.amount==0}">
+                                            <button onclick="buy(${detail.id})" class="btn btn-lg btn-info text-uppercase" disabled> Buy now </button>
+                                            <button onclick="addCart2(${detail.id})" class="btn btn-lg btn-outline-info text-uppercase" disabled> <i class="fas fa-shopping-cart"></i> Add to cart </button>
+                                        </c:if>
+
                                     </article> <!-- card-body.// -->
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->
@@ -159,10 +130,10 @@
           <jsp:include page="Footer.jsp"></jsp:include>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function addCart2(ProductID) {
-                <c:if test="${sessionScope.account != null}">
-                    var select_value = document.getElementById("select_id").value;
-                         <c:if test="${select_value != null}">                       //Sử dụng Ajax
+                                            function addCart2(ProductID) {
+            <c:if test="${sessionScope.account != null}">
+                                                var select_value = document.getElementById("select_id").value;
+                                                //Sử dụng Ajax
                                                 $.ajax({
                                                     url: "/DemoBTL/addMany",
                                                     type: "get", //send it through get method
@@ -174,34 +145,16 @@
                                                         alert(message);
                                                     }
                                                 });
-                         </c:if>
-                         <c:if test="${select_value == null}">
-                            alert("Da het hang ")
-                            location.href = "HomeControl";
-                        </c:if>
             </c:if>
             <c:if test="${sessionScope.account == null}">
-                location.href = "Login.jsp";
+                                                location.href = "Login.jsp";
             </c:if>
-            }
+                                            }
 
-            function buy(ProductID) {
-                var select_value = document.getElementById("select_id").value;
-                <c:if test="${select_value != null}">
-                    location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
-                </c:if>
-                
-                <c:if test="${select_value == null}">
-                    alert("Da het hang ")
-                    location.href = "HomeControl";
-                </c:if>
-            }
+                                            function buy(ProductID) {
+                                                var select_value = document.getElementById("select_id").value;
+                                                location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
+                                            }
         </script>  
-           </div>
-           <script src="https://uhchat.net/code.php?f=56ac67"></script>
-            <div class="zalo-chat-widget" data-oaid="589634003921980460" 
-                 data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="300" data-height="350"></div>
-
-<script src="https://sp.zalo.me/plugins/sdk.js"></script>
     </body>
 </html>

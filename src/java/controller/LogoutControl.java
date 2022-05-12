@@ -4,6 +4,8 @@
  */
 package controller;
 
+import dao.CartDAO;
+import entity.Account;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +32,9 @@ public class LogoutControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session=request.getSession();
+        Account a = (Account) session.getAttribute("account");
+        CartDAO dao = new CartDAO();
+        dao.deleteCart(a.getId());
         session.removeAttribute("account");
         response.sendRedirect("HomeControl");
 

@@ -58,9 +58,6 @@ public class FinishControl extends HttpServlet {
             String image=cart.getP().getImage();
             int amount=cart.getAmount();
             int price = cart.getP().getPrice() * cart.getAmount();
-        
-            System.out.println(id+ " " + nameP+" " + amount+ " "+price);
-
             bill.addBill(id, nameP, image, amount, price);
             
         }

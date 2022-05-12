@@ -18,7 +18,7 @@ public class test {
     public static void main(String[] args) {
         DAO dao=new DAO();
         BillDAO a= new BillDAO();
-a.addBill(1,"a","a", 0, 0);
+a.getBill(1);
 
     }
 }
