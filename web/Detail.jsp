@@ -59,15 +59,10 @@
                                         <div class="img-big-wrap">
                                             <div> <a href="#"><img src="${detail.image}"></a></div>
                                         </div> <!-- slider-product.// -->
-                                        <div class="img-small-wrap">
-                                            <div class="item-gallery"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCepDDx2BVt6xaS4HE-_i43nybyVabVS6B3d8M33F9BF_YY_jC1xaIZsNuR_o&usqp=CAc"> </div>
-                                            <div class="item-gallery"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCepDDx2BVt6xaS4HE-_i43nybyVabVS6B3d8M33F9BF_YY_jC1xaIZsNuR_o&usqp=CAc"> </div>
-                                            <div class="item-gallery"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCepDDx2BVt6xaS4HE-_i43nybyVabVS6B3d8M33F9BF_YY_jC1xaIZsNuR_o&usqp=CAc"> </div>
-                                            <div class="item-gallery"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCepDDx2BVt6xaS4HE-_i43nybyVabVS6B3d8M33F9BF_YY_jC1xaIZsNuR_o&usqp=CAc"> </div>
-                                        </div> <!-- slider-nav.// -->
+                                        
                                         <div class="col">
                                                         <c:if test="${detail.amount!=0}">
-                                                        <span class="badge badge-pill badge-info">Amount ${o.amount}</span>
+                                                        <span class="badge badge-pill badge-info">Amount ${detail.amount}</span>
                                                     </c:if>
                                                         <c:if test="${detail.amount==0}">
                                                         <span class="badge badge-danger">Hết hàng</span>

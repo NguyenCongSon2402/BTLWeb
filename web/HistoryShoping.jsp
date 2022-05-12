@@ -50,12 +50,12 @@
                 </table>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <button type="button" class="btn btn-warning">Total Amount</button>
-                    <button type="button" class="btn btn-outline-primary">${amount} VND</button>
+                    <button type="button" class="btn btn-outline-primary">${amount} </button>
             </div>
             <div>&emsp;</div><div>&emsp;</div><div>&emsp;</div>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
                     <button type="button" class="btn btn-warning">Total Payment</button>
-                    <button type="button" class="btn btn-outline-primary">${total}</button>
+                    <button type="button" class="btn btn-outline-primary">${total} VND</button>
             </div>
             <div>&emsp;</div><div>&emsp;</div><div>&emsp;</div>
             <button onclick="inLichSu()" style="margin-top: 20px" class="btn btn-info btn-lg">In lịch sử mua hàng</button>

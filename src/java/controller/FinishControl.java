@@ -7,6 +7,7 @@ package controller;
 
 import dao.BillDAO;
 import dao.CartDAO;
+import dao.ShipDAO;
 import dao.UserDAO;
 import entity.Account;
 import entity.Cart;
@@ -52,6 +53,13 @@ public class FinishControl extends HttpServlet {
         udao.addInfor(fname, lname, email, address, id);
         List<Cart> list = dao.getCart(id); //Truyền vào id của account
         int total = 0;
+
+//        ShipDAO ShipDAO = new ShipDAO();
+//        String cityName = request.getParameter("city");
+//int city=Integer.parseInt(cityName);
+//        System.out.println(city);
+//        int shipValue = ShipDAO.getShipPriceByCityName(cityName);
+//        System.out.println(shipValue);
 //        System.out.println(list);
         for(Cart cart : list) {
             String nameP=cart.getP().getName();

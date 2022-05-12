@@ -4,8 +4,10 @@
     Author     : Admin
 --%>
 
+<%@page import="dao.CartDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="dao" class="dao.CartDAO"></jsp:useBean>
 <!--begin of menu-->
 
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">

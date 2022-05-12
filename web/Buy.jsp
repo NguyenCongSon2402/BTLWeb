@@ -51,7 +51,7 @@
                 <div class="container wow fadeIn">
 
                     <!-- Heading -->
-                    <h2 class="my-5 h2 text-center">Checkout form</h2>
+                    <h2 class="my-5 h2 text-center">Trang thanh toán</h2>
 
                     <!--Grid row-->
                     <div class="row">
@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                                 <hr class="mb-4">
-                                <button class="btn btn-info btn-lg btn-block" type="submit">Checkout</button>
+                                <button class="btn btn-info btn-lg btn-block" type="submit">Thanh toán</button>
 
                             </form>
 

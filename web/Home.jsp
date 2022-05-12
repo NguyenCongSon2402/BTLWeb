@@ -58,7 +58,7 @@
                                                 <p class="card-text show_txt">${o.title}</p>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <span class="badge badge-warning">${o.price}$</span>
+                                                        <span class="badge badge-warning">${o.price}VND</span>
 
                                                     </div>
                                                     <div class="col">
