@@ -147,8 +147,13 @@
                                             }
 
                                             function buy(ProductID) {
+                                                <c:if test="${sessionScope.account == null}">
+                                                    location.href = "Login.jsp";
+                                                </c:if>
+                                                <c:if test="${sessionScope.account != null}">
                                                 var select_value = document.getElementById("select_id").value;
                                                 location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
+                                                </c:if>
                                             }
         </script>  
     </body>
