@@ -1,4 +1,5 @@
 
+import dao.BillDAO;
 import dao.DAO;
 import entity.Category;
 import entity.Product;
@@ -16,11 +17,8 @@ import java.util.List;
 public class test {
     public static void main(String[] args) {
         DAO dao=new DAO();
-    int count=dao.countProductCateID(1);
-int id=1;
-                List<Product> list= dao.pagingProductCateID(id,2);
-for(Product o:list)
-System.out.println(o);
-        System.out.println(count);
+        BillDAO a= new BillDAO();
+a.addBill(1,"a","a", 0, 0);
+
     }
 }

@@ -62,11 +62,15 @@
 
                                                     </div>
                                                     <div class="col">
-                                                        <a href="" class="btn btn-outline-success">Add to cart</a>
+                                                        <a onclick="addCart(${o.id})" class="btn btn-outline-success">Add to cart</a>
                                                     </div>
                                                     <div class="col">
+                                                        <c:if test="${o.amount!=0}">
                                                         <span class="badge badge-pill badge-info">Amount ${o.amount}</span>
-
+                                                    </c:if>
+                                                        <c:if test="${o.amount==0}">
+                                                        <span class="badge badge-danger">Hết hàng</span>
+                                                    </c:if>
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,6 +105,30 @@
                  data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="300" data-height="350"></div>
 
 <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function addCart(ProductID) {
+                <c:if test="${sessionScope.account != null}">
+                    //Sử dụng Ajax
+                    $.ajax({
+                        url: "/DemoBTL/addToCart",
+                        type: "get", //send it through get method
+                            data: {
+                                ProductID: ProductID
+                            },
+                            success: function (message) {
+                                alert(message);
+                                location.href = "HomeControl";    
+                            },
+                            error: function () {
+                            }
+                        });
+            </c:if>
+            <c:if test="${sessionScope.account == null}">
+                location.href = "Login.jsp";
+            </c:if>
+            }
+        </script>
     </body>
 </html>
 

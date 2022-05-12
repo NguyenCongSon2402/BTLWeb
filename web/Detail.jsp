@@ -91,9 +91,13 @@
                                             <div class="item-gallery"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCepDDx2BVt6xaS4HE-_i43nybyVabVS6B3d8M33F9BF_YY_jC1xaIZsNuR_o&usqp=CAc"> </div>
                                         </div> <!-- slider-nav.// -->
                                         <div class="col">
-                                                <span class="badge badge-pill badge-warning">Amount ${detail.amount}</span>
-                                               
-                                            </div>
+                                                        <c:if test="${detail.amount!=0}">
+                                                        <span class="badge badge-pill badge-info">Amount ${detail.amount}</span>
+                                                    </c:if>
+                                                        <c:if test="${detail.amount==0}">
+                                                        <span class="badge badge-danger">Hết hàng</span>
+                                                    </c:if>
+                                                    </div>
                                     </article> <!-- gallery-wrap .end// -->
                                 </aside>
                                 <aside class="col-sm-7">
@@ -129,7 +133,7 @@
                                                 <dl class="param param-inline">
                                                     <dt>Quantity: </dt>
                                                     <dd>
-                                                        <select class="form-control form-control-sm" style="width:70px;">
+                                                        <select id="select_id" class="form-control form-control-sm" style="width:70px;">
                                                             <c:forEach var="i" begin="1" end="${detail.amount}">
                                                                 <option> ${i} </option>
                                                             </c:forEach>
@@ -140,8 +144,8 @@
                                             
                                         </div> <!-- row.// -->
                                         <hr>
-                                        <a href="#" class="btn btn-lg btn-primary text-uppercase"> Buy now </a>
-                                        <a href="#" class="btn btn-lg btn-outline-primary text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+                                        <button onclick="buy(${detail.id})" class="btn btn-lg btn-info text-uppercase"> Buy now </button>
+                                        <button onclick="addCart2(${detail.id})" class="btn btn-lg btn-outline-info text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </button>
                                     </article> <!-- card-body.// -->
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->
@@ -153,6 +157,46 @@
             </div>
         </div>
           <jsp:include page="Footer.jsp"></jsp:include>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function addCart2(ProductID) {
+                <c:if test="${sessionScope.account != null}">
+                    var select_value = document.getElementById("select_id").value;
+                         <c:if test="${select_value != null}">                       //Sử dụng Ajax
+                                                $.ajax({
+                                                    url: "/DemoBTL/addMany",
+                                                    type: "get", //send it through get method
+                                                    data: {
+                                                        ProductID: ProductID,
+                                                        Quantity: select_value
+                                                    },
+                                                    success: function (message) {
+                                                        alert(message);
+                                                    }
+                                                });
+                         </c:if>
+                         <c:if test="${select_value == null}">
+                            alert("Da het hang ")
+                            location.href = "HomeControl";
+                        </c:if>
+            </c:if>
+            <c:if test="${sessionScope.account == null}">
+                location.href = "Login.jsp";
+            </c:if>
+            }
+
+            function buy(ProductID) {
+                var select_value = document.getElementById("select_id").value;
+                <c:if test="${select_value != null}">
+                    location.href = "buyNow?ProductID=" + ProductID + "&Quantity=" + select_value;
+                </c:if>
+                
+                <c:if test="${select_value == null}">
+                    alert("Da het hang ")
+                    location.href = "HomeControl";
+                </c:if>
+            }
+        </script>  
            </div>
            <script src="https://uhchat.net/code.php?f=56ac67"></script>
             <div class="zalo-chat-widget" data-oaid="589634003921980460" 

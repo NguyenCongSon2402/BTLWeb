@@ -7,21 +7,28 @@ package entity;
 
 /**
  *
- * @author trinh
+ * @author Admin
  */
 public class Product {
     private int id;
     private String name;
     private String image;
-    private double price;
+    private int price;
     private String title;
     private String description;
     private int amount;
 
     public Product() {
     }
-
-    public Product(int id, String name, String image, double price, String title, String description, int amount) {
+    public Product(int id, String name, String image, int price, String title, String description) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.title = title;
+        this.description = description;
+    }
+    public Product(int id, String name, String image, int price, String title, String description, int amount) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -55,11 +62,11 @@ public class Product {
         this.image = image;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -93,4 +100,13 @@ public class Product {
         return "Product{" + "id=" + id + ", amount="+amount+ "}";
     }
     //return "Product{" + "id=" + id + ", name=" + name + ", image=" + image + ", price=" + price + ", title=" + title + ", description=" + description +", amount="+amount+ '}';
+    public String getPriceWithDot() {
+        String priceDot = "" + price;
+        int i = priceDot.length() - 3;
+        while (i > 0) {
+            priceDot = priceDot.substring(0, i) + "." + priceDot.substring(i, priceDot.length());
+            i -= 3;
+        }
+        return priceDot;
+    }
 }

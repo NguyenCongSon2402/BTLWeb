@@ -21,7 +21,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="ManagerControl">Manager Product</a>
                             </li>
-                        </c:if>   
+                        </c:if>
+                            <c:if test="${sessionScope.account != null}">
+                            <li class="nav-item">
+                                <a class="nav-link" href="history">History</a>
+                            </li>
+                        </c:if>
                         <c:if test="${sessionScope.account != null}">
                             <li class="nav-item">
                                 <a class="nav-link" href="LogoutControl">Logout</a>
@@ -47,15 +52,30 @@
                                 </button>
                             </div>
                         </div>
-                        <a class="btn btn-success btn-sm ml-3" href="show">
-                            <i class="fa fa-shopping-cart"></i> Cart
-                            <span class="badge badge-light">3</span>
-                        </a>
+                        <li style="margin-right: 20px">
+                                    <a class="btn btn-info btn-sm ml-3" onclick="showCart()" style="height: 30px; padding-top: 2px">
+                                        <i class="fa fa-shopping-cart"></i> Cart
+                                        <span class="badge badge-light">${dao.countNumCart(sessionScope.account.id)}</span>
+                                </a>
+                        </li>
                     </form>
                     <!<!--end Search -->
                 </div>
             </div>
         </nav>
+        <script>
+                                   
+
+            function showCart() {
+                <c:if test="${sessionScope.account != null}">
+                    location.href = "show"                 
+                </c:if>
+                <c:if test="${sessionScope.account == null}">
+                    location.href = "Login.jsp";
+                </c:if>
+            }
+                                   
+        </script>  
         <section class="text-center" style="background-color: white;">
                 <div class="container-fluid" style="background-image: url('video/banner-n04.jpg'); height: 400px;background-size: cover">
                 </div>
